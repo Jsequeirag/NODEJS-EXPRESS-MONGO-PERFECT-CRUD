@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel.js")
+const {signToken}=require("../libs/jwt/jwt.js")
 const signUp = async (req, res) => {
   try {
     const newUser = new userModel({
@@ -7,8 +8,8 @@ const signUp = async (req, res) => {
       password: await
         userModel.encryptPassword(req.body.password)
     })
-    await newUser.save()
-    res.status(200).json(newUser)
+    const userSaved=await newUser.save()
+    res.status(200).json(userSaved)
   } catch (e) {
     console.log(e)
     res.status(500).json({ message: e })
@@ -26,11 +27,15 @@ const signIn = async (req, res) => {
   })
   
   const comparedPassword = await userModel.comparePassword(req.body.password, user.password)
-  console.log(comparedPassword)
+  
   if(!comparedPassword) return res.status(200)
 .json({message:"wrong password"})
+  
+  const token=signToken(user._id)
+  
   const {password,...newuser}=user._doc
-  res.status(200).json(newuser)
+  
+  res.status(200).json({user,token})
 }
 
 module.exports = { signUp, signIn }
