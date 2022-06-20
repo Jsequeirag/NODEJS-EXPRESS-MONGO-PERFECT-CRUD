@@ -1,5 +1,7 @@
 const userModel = require("../models/userModel.js")
 const {signToken}=require("../libs/jwt/jwt.js")
+
+//signUp
 const signUp = async (req, res) => {
   try {
     const newUser = new userModel({
@@ -15,7 +17,7 @@ const signUp = async (req, res) => {
     res.status(500).json({ message: e })
   }
 }
-
+//signIn
 const signIn = async (req, res) => {
   
   const user = await userModel.findOne({
