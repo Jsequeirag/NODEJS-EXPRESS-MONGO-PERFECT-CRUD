@@ -15,7 +15,7 @@ app.use("/views", express.static(__dirname + "/views"));
 //initConfig
 const insertRoles=require("./initConfig/insertRoles")
 
-//root server//
+//server//
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html")
 })
