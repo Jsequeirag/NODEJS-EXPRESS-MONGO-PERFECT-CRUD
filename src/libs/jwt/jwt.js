@@ -8,10 +8,17 @@ const signToken = (userId) => {
   return token;
 }
 
-const verifyToken = (token) => {
-  const verifiedToken = jwt.verify(token, "secret")
-  console.log(verifiedToken)
-  return verifiedToken
+const verifyToken = (req,res,next) => {
+  try{
+   const token=req.header("x-access-token")
+   const verifiedToken = jwt.verify(token, "secret")
+   req.userId=verifiedToken.id
+   next()
+   }catch(e){
+    console.log(e)
+    res.status(500).json({message:e})
+   }
+   
 }
 
 module.exports = { signToken, verifyToken }
