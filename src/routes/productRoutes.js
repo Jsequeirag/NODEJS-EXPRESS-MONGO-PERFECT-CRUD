@@ -1,4 +1,4 @@
-const {verifyToken}=require("../libs/jwt/jwt.js")
+const {verifyToken}=require("../middlewares/jwt.js")
 //router
 const router=require("express").Router()
 //controllers

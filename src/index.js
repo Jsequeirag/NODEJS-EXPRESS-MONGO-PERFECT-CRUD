@@ -11,6 +11,10 @@ app.use(compression())
 app.use(express.json())
 app.use(helmet())
 app.use("/views", express.static(__dirname + "/views"));
+
+//initConfig
+const insertRoles=require("./initConfig/insertRoles")
+
 //root server//
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html")
@@ -28,6 +32,7 @@ app.use("/product",productRoutes)
 mongoose.connect(process.env['MONGO']).then(res => {
   app.listen("3000", () => {
     console.log("database connected")
+    insertRoles()
     console.log("server:3000")
   })
 })

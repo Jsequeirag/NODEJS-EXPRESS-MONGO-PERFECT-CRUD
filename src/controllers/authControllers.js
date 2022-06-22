@@ -1,5 +1,5 @@
 const userModel = require("../models/userModel.js")
-const {signToken}=require("../libs/jwt/jwt.js")
+const {signToken}=require("../middlewares/jwt.js")
 
 //signUp
 const signUp = async (req, res) => {

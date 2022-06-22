@@ -1,11 +1,13 @@
 //jwt
-const {verifyToken}=require("../libs/jwt/jwt.js")
+const {verifyToken}=require("../middlewares/jwt.js")
+//authentification
+const {isAdmin,isUser}=require("../middlewares/Authorization.js")
 //router
 const router = require("express").Router()
 //controllers
 const {getCategory,createCategory,updateCategory,deleteCategory}=require("../controllers/categoryControllers.js")
 //routes
-router.get("/",verifyToken,getCategory)
+router.get("/",verifyToken,isAdmin,getCategory)
 
 router.post("/",verifyToken,createCategory)
 
