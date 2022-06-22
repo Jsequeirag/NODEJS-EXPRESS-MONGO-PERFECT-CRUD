@@ -1,18 +1,18 @@
 //jwt
 const {verifyToken}=require("../middlewares/jwt.js")
-//authentification
-const {isAdmin,isUser}=require("../middlewares/Authorization.js")
+//authorization
+const {isAdmin,isAdminOrUser}=require("../middlewares/authorization.js")
 //router
 const router = require("express").Router()
 //controllers
 const {getCategory,createCategory,updateCategory,deleteCategory}=require("../controllers/categoryControllers.js")
 //routes
-router.get("/",verifyToken,isAdmin,getCategory)
+router.get("/",verifyToken,isAdminOrUser,getCategory)
 
-router.post("/",verifyToken,createCategory)
+router.post("/",verifyToken,isAdmin,createCategory)
 
-router.put("/:id",verifyToken, updateCategory)
+router.put("/:id",verifyToken,isAdmin,updateCategory)
 
-router.delete("/:id",verifyToken, deleteCategory)
+router.delete("/:id",verifyToken,isAdmin,deleteCategory)
 //export
 module.exports = router

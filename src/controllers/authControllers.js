@@ -7,6 +7,7 @@ const signUp = async (req, res) => {
     const newUser = new userModel({
       name: req.body.name,
       email: req.body.email,
+      role:req.body.role,
       password: await
         userModel.encryptPassword(req.body.password)
     })
