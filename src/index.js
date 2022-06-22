@@ -11,7 +11,7 @@ app.use(compression())
 app.use(express.json())
 app.use(helmet())
 app.use("/views", express.static(__dirname + "/views"));
-//**routes**//
+//root server//
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html")
 })
@@ -21,6 +21,9 @@ app.use("/auth", authRoutes);
 //categoryRoutes
 const categoryRoutes = require("./routes/categoryRoutes.js");
 app.use("/category", categoryRoutes);
+//productRoutes
+const productRoutes=require("./routes/productRoutes.js")
+app.use("/product",productRoutes)
 //database connection and server startup
 mongoose.connect(process.env['MONGO']).then(res => {
   app.listen("3000", () => {

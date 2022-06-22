@@ -12,7 +12,7 @@ const getCategory = async (req, res) => {
     res.status(500).json({ message: e })
   }
 }
-//post
+//create
 const createCategory = async (req, res) => {
   try {
     const category = await categoryModel.findOne({ name: req.body.name })

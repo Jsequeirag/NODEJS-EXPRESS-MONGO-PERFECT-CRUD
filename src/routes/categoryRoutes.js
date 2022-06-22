@@ -1,6 +1,6 @@
 //router
 const router = require("express").Router()
-//constrollers
+//controllers
 const {getCategory,createCategory,updateCategory,deleteCategory}=require("../controllers/categoryControllers.js")
 //routes
 router.get("/",getCategory)
