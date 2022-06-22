@@ -18,6 +18,9 @@ app.get("/", (req, res) => {
 //authRoutes
 const authRoutes = require("./routes/authRoutes.js");
 app.use("/auth", authRoutes);
+//categoryRoutes
+const categoryRoutes = require("./routes/categoryRoutes.js");
+app.use("/category", categoryRoutes);
 //database connection and server startup
 mongoose.connect(process.env['MONGO']).then(res => {
   app.listen("3000", () => {
