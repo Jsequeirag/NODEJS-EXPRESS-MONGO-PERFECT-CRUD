@@ -11,9 +11,9 @@ const isAdmin = async (req, res, next) => {
 const isAdminOrUser = async (req, res, next) => {
   const user = await userModel.findById(req.userId)
   if (!user) return res.status(401).json({ message: "unauthorized user" })
-  console.log(user)
+
   if (user.role != 'user' && user.role != 'admin') return res.status(401).json({ message: "unauthorized user" })
- 
+   console.log("aqui")
   next()
 }
 module.exports = { isAdmin, isAdminOrUser }

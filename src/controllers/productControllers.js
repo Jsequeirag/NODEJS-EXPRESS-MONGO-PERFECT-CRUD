@@ -67,10 +67,12 @@ const updateProduct = async (req, res) => {
 //delete
 const deleteProduct = async (req, res) => {
   try {
-    const deletedProduct = await productModel.findOneAndDelete(req.params.id)
+    const deletedProduct = await productModel.findByIdAndDelete(req.params.id)
+    console.log("aqui")
     res.status(200).json(deletedProduct)
   } catch (e) {
     console.log(e)
+    
     res.status(500).json({ message: e })
   }
 }

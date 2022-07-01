@@ -22,7 +22,7 @@ const productSchema = new Schema({
     required: true,
     ref:"category"
   },  
-})
+}, { timestamps: true, versionKey: false })
 
 const  productModel=model("product",productSchema);
 
